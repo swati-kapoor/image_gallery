@@ -50,10 +50,10 @@ public class SwiftFlutterGallaryPlugin: NSObject, FlutterPlugin {
                             if image != nil {
                                 var imageData: Data?
                                 if let cgImage = image!.cgImage, cgImage.renderingIntent == .defaultIntent {
-                                    imageData = UIImageJPEGRepresentation(image!, 0.8)
+                                    imageData = image!.jpegData(0.8)
                                 }
                                 else {
-                                    imageData = UIImagePNGRepresentation(image!)
+                                    imageData = image!.pngData()
                                 }
                                 let guid = ProcessInfo.processInfo.globallyUniqueString;
                                 let tmpFile = String(format: "image_picker_%@.jpg", guid);
