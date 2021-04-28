@@ -50,7 +50,7 @@ public class SwiftFlutterGallaryPlugin: NSObject, FlutterPlugin {
                             if image != nil {
                                 var imageData: Data?
                                 if let cgImage = image!.cgImage, cgImage.renderingIntent == .defaultIntent {
-                                    imageData = image!.jpegData(0.8)
+                                    imageData = image!.jpegData( compressionQuality: 0.8)
                                 }
                                 else {
                                     imageData = image!.pngData()
