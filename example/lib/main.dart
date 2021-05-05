@@ -17,8 +17,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Map<dynamic, dynamic> allImageInfo = new HashMap();
-  List allImage=new  List();
-  List allNameList=new  List();
+  List? allImage=[];
+  List? allNameList=[];
 
   @override
   void initState() {
@@ -27,14 +27,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> loadImageList() async {
-    Map<dynamic, dynamic>  allImageTemp;
-      allImageTemp = await FlutterGallaryPlugin.getAllImages;
+    Map<dynamic, dynamic>?  allImageTemp;
+      allImageTemp = await (FlutterGallaryPlugin.getAllImages as FutureOr<Map<dynamic, dynamic>?>);
       print(" call $allImageTemp.length");
 
 
     setState(() {
-      this.allImage = allImageTemp['URIList'] as List;
-      this.allNameList = allImageTemp['DISPLAY_NAME'] as List;
+      this.allImage = allImageTemp!['URIList'] as List?;
+      this.allNameList = allImageTemp['DISPLAY_NAME'] as List?;
     });
   }
 
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         // padding: const EdgeInsets.all(4.0),
         mainAxisSpacing: 4.0,
         crossAxisSpacing: 4.0,
-        children: _buildGridTileList(allImage.length));
+        children: _buildGridTileList(allImage!.length));
   }
 
   List<Container> _buildGridTileList(int count)  {
@@ -70,11 +70,11 @@ class _MyAppState extends State<MyApp> {
     mainAxisSize: MainAxisSize.max,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
-    Image.file(File(allImage[index].toString()),
+    Image.file(File(allImage![index].toString()),
     width: 96.0,
     height: 96.0,
     fit: BoxFit.contain,),
-    Text(allNameList[index])
+    Text(allNameList![index])
     ],)
 
 

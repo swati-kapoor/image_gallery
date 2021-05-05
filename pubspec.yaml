@@ -10,7 +10,7 @@ issue_tracker: https://github.com/flutter-devs/image_gallery/issues
 documentation:
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 
 dependencies:
